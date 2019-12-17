@@ -37,7 +37,7 @@
     <div class="form-group">
       <label for="amount">Amount:</label>
       <input [(ngModel)]="payment.amount" placeholder="Amount" name="amount" class="form-control" id="amount"
-        [disabled]="detailsView" #amount="ngModel" min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"
+        [disabled]="detailsView" #amount="ngModel" min="0" value="0" step="any" pattern="^\d+(?:\.\d{1,2})?$"
         required />
 
       <div *ngIf="amount.dirty && amount.invalid">
@@ -73,7 +73,7 @@
         maxlength="1000" />
     </div>
 
-    <button [disabled]="!createForm.valid" class="btn btn-success" (click)="createPayment() "
+    <button [disabled]="!createForm.valid" class="btn btn-success" 
       [disabled]="detailsView">Create</button>
   </form>
 </div>

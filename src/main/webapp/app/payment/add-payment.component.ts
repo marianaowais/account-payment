@@ -18,7 +18,6 @@ export class AddPaymentComponent {
   }
 
   createPayment(): void {
-    debugger ;
     this.paymentService.createPayment(this.payment)
         .subscribe( data => {
           alert("Payment created successfully.");

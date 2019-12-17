@@ -33,7 +33,7 @@ public class AccountValidation
     
     private void validateAccountNumberUnique(final Long accountNumber) {
         if (this.accountRepository.existsByAccountNumber(accountNumber)) {
-            throw new ValidationException(accountNumber.toString()); //invokedynamic(makeConcatWithConstants:(Ljava/lang/Long;)Ljava/lang/String;, accountNumber)
+            throw new ValidationException(accountNumber.toString()); 
         }
     }
     

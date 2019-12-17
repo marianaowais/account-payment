@@ -36,7 +36,6 @@ export class AddAccountComponent {
   }
 
 private processError(response: HttpErrorResponse) {
-  debugger ;
   if (response.status === 400 ) { // custom error (validation error for account number)
     alert("Account number already exist.");
   }

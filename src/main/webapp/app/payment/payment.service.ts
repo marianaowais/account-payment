@@ -25,7 +25,6 @@ export class PaymentService {
   }
 
   public createPayment(payment) {
-    debugger ;
     return this.http.post<Payment>(this.paymentUrl+"/add", payment);
   }
 

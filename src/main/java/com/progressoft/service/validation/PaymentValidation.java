@@ -10,7 +10,6 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.progressoft.repository.CurrencyRepository;
 import com.progressoft.repository.JpaAccountRepository;
 import com.progressoft.service.dto.PaymentRequest;
 
@@ -20,12 +19,10 @@ public class PaymentValidation
 	@Autowired
     private final JpaAccountRepository accountRepository;
    
-	@Autowired
-	private final CurrencyRepository currencyRepository;
-    
-    public PaymentValidation(final JpaAccountRepository accountRepository , CurrencyRepository currencyRepository) {
+
+    public PaymentValidation(final JpaAccountRepository accountRepository) {
         this.accountRepository = accountRepository;
-        this.currencyRepository = currencyRepository;
+  
     }
     
     public void validatePaymentRequest(final PaymentRequest paymentRequest) {
@@ -33,14 +30,9 @@ public class PaymentValidation
         this.validateAccountNumberExist(paymentRequest.getSourceAccountNumber(), "Source Account Not Exist");
         this.validateAccountNumberExist(paymentRequest.getDestinationAccountNumber(), "Destination Account Not Exist");
         this.validateSourceAndDestinationNotTheSame(paymentRequest);
-        this.validateCurrencyExist(paymentRequest.getCurrencyCode());
+ 
     }
     
-    private void validateCurrencyExist(final String currencyCode) {
-        if (!this.currencyRepository.existByCode(currencyCode)) {
-            throw new ValidationException(currencyCode);
-        }
-    }
     
     private void validateSourceAndDestinationNotTheSame(final PaymentRequest paymentRequest) {
         if (paymentRequest.getSourceAccountNumber().equals(paymentRequest.getDestinationAccountNumber())) {
