@@ -1,0 +1,28 @@
+<div class="col-md-6">
+  <h2> Payments</h2>
+  
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Source Account Number</th>
+      <th>Destination Account Number</th>
+      <th>Amount</th>
+      <th>Currency Code</th>
+      <th>Payment Description</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let payment of payments">
+      <td class="hidden">{{payment.id}}</td>
+      <td>{{payment.sourceAccountNumber}}</td>
+      <td>{{payment.destinationAccountNumber}}</td>
+      <td>{{payment.amount}}</td>
+      <td>{{payment.currencyCode}}</td>
+      <td>{{payment.paymentDescription}}</td>
+      <td><button class="btn btn-default" (click)="getDetails(payment)"> payment details</button></td>
+    </tr>
+    </tbody>
+  </table>
+  </div>

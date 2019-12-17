@@ -1,0 +1,26 @@
+<div class="col-md-6">
+<h2> Accounts</h2>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="hidden">Id</th>
+    <th>Account Number</th>
+    <th>Holder Name</th>
+    <th>Holder Phone Number</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let account of accounts">
+    <td class="hidden">{{account.id}}</td>
+    <td>{{account.accountNumber}}</td>
+    <td>{{account.accountHolderName}}</td>
+    <td>{{account.accountHolderPhoneNumber}}</td>
+    <td>{{account.accountDescription}}</td>
+    <td><button class="btn btn-default" (click)="getDetails(account)"> account details</button></td>
+  </tr>
+  </tbody>
+</table>
+</div>

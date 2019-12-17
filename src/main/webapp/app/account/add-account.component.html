@@ -1,0 +1,65 @@
+<div class="col-md-6">
+  <h2 class="text-center" [hidden]="detailsView">Add Account</h2>
+  <br />
+  <form #createForm="ngForm" (ngSubmit)="createAccount(createForm)">
+    <div class="form-group">
+      <label for="accountNumber">Account Number:</label>
+      <input type="accountNumber" [(ngModel)]="account.accountNumber" placeholder="Account Number" name="accountNumber"
+        class="form-control" id="accountNumber" [disabled]="detailsView" #accountNumber="ngModel" minlength="6"
+        maxlength="6" pattern="^[0-9]*$" required />
+
+      <div *ngIf="accountNumber.dirty && accountNumber.invalid">
+        <small class="form-text text-danger" *ngIf="accountNumber.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="accountNumber.errors.pattern ||accountNumber.errors.minlength">
+          only 6 digits allowed
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="accountHolderName">Holder Name:</label>
+      <input [(ngModel)]="account.accountHolderName" placeholder="Holder Name" name="accountHolderName"
+        class="form-control" id="accountHolderName" [disabled]="detailsView" #accountHolderName="ngModel"
+        pattern="^[a-zA-Z ]*$" required />
+
+      <div *ngIf="accountHolderName.dirty && accountHolderName.invalid">
+        <small class="form-text text-danger" *ngIf="accountHolderName.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="accountHolderName.errors.pattern">
+          only english letters allowed
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="accountHolderPhoneNumber">Holder Phone Number:</label>
+      <input [(ngModel)]="account.accountHolderPhoneNumber" placeholder="Holder Phone Number"
+        name="accountHolderPhoneNumber" class="form-control" id="accountHolderPhoneNumber" [disabled]="detailsView"
+        #accountHolderPhoneNumber="ngModel" minlength="10" maxlength="10" pattern="^[0-9]*$" required />
+
+      <div *ngIf="accountHolderPhoneNumber.dirty && accountHolderPhoneNumber.invalid">
+        <small class="form-text text-danger" *ngIf="accountHolderPhoneNumber.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="accountHolderPhoneNumber.errors.pattern ||accountHolderPhoneNumber.errors.minlength ">
+          only 10 numbers allowed
+        </small>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="accountDescription">Account Description:</label>
+      <input [(ngModel)]="account.accountDescription" placeholder="Account Description" name="accountDescription"
+        class="form-control" id="accountDescription" [disabled]="detailsView" #accountDescription="ngModel"
+        maxlength="1000" />
+    </div>
+
+    <button [disabled]="!createForm.valid" class="btn btn-success" (click)="createAccount() "
+      [disabled]="detailsView">Create</button>
+  </form>
+</div>

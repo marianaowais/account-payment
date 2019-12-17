@@ -1,0 +1,79 @@
+<div class="col-md-6">
+  <h2 class="text-center" [hidden]="detailsView">Add Payment</h2>
+  <br />
+  <form #createForm="ngForm" (ngSubmit)="createPayment(createForm)">
+    <div class="form-group">
+      <label for="sourceAccountNumber">Source Account Number:</label>
+      <input type="sourceAccountNumber" [(ngModel)]="payment.sourceAccountNumber" placeholder="Source Account Number"
+        #sourceAccountNumber="ngModel" name="sourceAccountNumber" class="form-control" id="sourceAccountNumber"
+        [disabled]="detailsView" minlength="6" maxlength="6" pattern="^[0-9]*$" required />
+
+      <div *ngIf="sourceAccountNumber.dirty && sourceAccountNumber.invalid">
+        <small class="form-text text-danger" *ngIf="sourceAccountNumber.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="sourceAccountNumber.errors.pattern || sourceAccountNumber.errors.minlength">
+          only 6 digits allowed
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="destinationAccountNumber">Destination Account Number:</label>
+      <input [(ngModel)]="payment.destinationAccountNumber" placeholder="Destination Account Number"
+        name="destinationAccountNumber" class="form-control" id="destinationAccountNumber" [disabled]="detailsView"
+        #destinationAccountNumber="ngModel" minlength="6" maxlength="6" pattern="^[0-9]*$" required />
+
+      <div *ngIf="destinationAccountNumber.dirty && destinationAccountNumber.invalid">
+        <small class="form-text text-danger" *ngIf="destinationAccountNumber.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="destinationAccountNumber.errors.pattern ||destinationAccountNumber.errors.minlength">
+          only 6 digits allowed
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input [(ngModel)]="payment.amount" placeholder="Amount" name="amount" class="form-control" id="amount"
+        [disabled]="detailsView" #amount="ngModel" min="0" value="0" step="0.01" pattern="^\d+(?:\.\d{1,2})?$"
+        required />
+
+      <div *ngIf="amount.dirty && amount.invalid">
+        <small class="form-text text-danger" *ngIf="amount.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="amount.errors.pattern">
+          only digits allowed
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="currencyCode">Currency Code:</label>
+      <input [(ngModel)]="payment.currencyCode" placeholder="Currency Code" name="currencyCode" class="form-control"
+        id="currencyCode" [disabled]="detailsView" #currencyCode="ngModel" pattern="^[a-zA-Z ]*$" required />
+
+      <div *ngIf="currencyCode.dirty && currencyCode.invalid">
+        <small class="form-text text-danger" *ngIf="currencyCode.errors.required">
+          required
+        </small>
+        <small class="form-text text-danger" *ngIf="currencyCode.errors.pattern">
+          only english letters allowed
+        </small>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="paymentDescription">Payment Description:</label>
+      <input [(ngModel)]="payment.paymentDescription" placeholder="Payment Description" name="paymentDescription"
+        class="form-control" id="paymentDescription" [disabled]="detailsView" #paymentDescription="ngModel"
+        maxlength="1000" />
+    </div>
+
+    <button [disabled]="!createForm.valid" class="btn btn-success" (click)="createPayment() "
+      [disabled]="detailsView">Create</button>
+  </form>
+</div>
