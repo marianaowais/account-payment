@@ -20,10 +20,12 @@ import com.progressoft.service.dto.AccountRequest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @RestController
-@RequestMapping({ "payments-system/account" })
+@RequestMapping({ "account" })
 @Api("Account API , Add/Get By Id/List")
+@EnableSwagger2
 public class AccountController
 {
 	@Autowired
@@ -33,7 +35,7 @@ public class AccountController
         this.accountService = accountService;
     }
     
-    @GetMapping({"/all"})
+    @GetMapping
     @CrossOrigin({ "*" })
     @ApiOperation("Method To List All Accounts")
     public ResponseEntity<List<Account>> listAccounts() {
@@ -47,7 +49,7 @@ public class AccountController
         return ResponseEntity.of((Optional)Optional.of(this.accountService.addAccount(accountRequest)));
     }
     
-   @GetMapping({ "detail/{id}" })
+    @GetMapping({ "/{id}" })
     @CrossOrigin({ "*" })
     @ApiOperation("Method To Get Account By Id")
     public ResponseEntity<Account> getAccount(@PathVariable("id") final String id) {

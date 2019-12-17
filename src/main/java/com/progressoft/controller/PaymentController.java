@@ -43,7 +43,7 @@ public class PaymentController
     @CrossOrigin({ "*" })
     @ApiOperation("Method To Add Payment")
     public ResponseEntity<Payment> addPayment(@RequestBody final PaymentRequest paymentRequest) {
-        return (ResponseEntity<Payment>)ResponseEntity.of((Optional)Optional.of(this.paymentService.addPayment(paymentRequest)));
+        return ResponseEntity.of((Optional)Optional.of(this.paymentService.addPayment(paymentRequest)));
     }
     
     @GetMapping({ "/{id}" })
